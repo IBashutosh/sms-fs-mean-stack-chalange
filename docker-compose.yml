@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  sms-fs-chalange-web-app:
+    build:
+      context: ./sms-fs-chalange-web-app
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    networks:
+      - webnet
+    depends_on:
+      - mongo
+      - sms-fs-rest-api-server
+    links:
+      - sms-fs-rest-api-server
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongodb-data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - webnet
+
+  sms-fs-rest-api-server:
+    build:
+      context: ./sms-fs-rest-api-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5000:5000"
+    networks:
+      - webnet
+    depends_on:
+      - mongo
+    links:
+      - mongo
+  
+networks:
+  webnet:
+
+volumes:
+  mongodb-data:

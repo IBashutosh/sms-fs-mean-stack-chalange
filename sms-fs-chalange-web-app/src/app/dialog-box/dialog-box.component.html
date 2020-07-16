@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Data Table Action: <strong>{{action}}</strong></h1>
+<div mat-dialog-content  >
+    <div *ngIf="action != 'Delete'; else elseTemplate1">
+        <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+            <input placeholder="{{action}} id" matInput [(ngModel)]="dialogBoxLocalData.id">
+        </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} city" matInput [(ngModel)]="dialogBoxLocalData.city">
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} start_date" matInput [(ngModel)]="dialogBoxLocalData.start_date">
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} end_date" matInput [(ngModel)]="dialogBoxLocalData.end_date">
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} price" matInput [(ngModel)]="dialogBoxLocalData.price">
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} status" matInput [(ngModel)]="dialogBoxLocalData.status">
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input placeholder="{{action}} color" matInput [(ngModel)]="dialogBoxLocalData.color">
+    </mat-form-field>
+</div>
+    <ng-template #elseTemplate1>
+        Sure to delete <b>{{dialogBoxLocalData.id}}</b>?
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [disabled]="isDisable"  (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

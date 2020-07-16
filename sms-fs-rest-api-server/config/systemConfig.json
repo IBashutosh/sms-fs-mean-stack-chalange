@@ -1,0 +1,12 @@
+{
+    "smsAPI": {
+        "ip": "127.0.0.1",
+        "protocol": "http",
+        "path": "/sms",
+        "port": "5000"
+
+    },
+    "db":{
+        "connectionString": "mongodb://mongo:27017/smsDB"
+    }
+}
